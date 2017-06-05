@@ -1,1 +1,60 @@
-{{yield}}
+{{#if (and dropdownOpen options.length)}}
+	{{#if isMobileOrTablet}}
+		<div class="mobile-overlay" {{action "close"}}></div>
+	{{/if}}
+{{/if}}
+<div class="select-box__wrapper">
+	{{#if nativeSelect}}
+		<select name="{{selectId}}" id="{{selectId}}" class="mdl-textfield__input" onchange={{action "selectItem" value="target.value"}}>
+			{{#if placeholder}}
+				<option value="" selected>{{placeholder}}</option>
+			{{/if}}
+			{{#each options as |option index|}}
+				{{#if isDeepOptions}}
+					<option value={{get option valueKey}} selected={{eq selected (get option valueKey)}} data-test-id={{concat "sbNativeDeepOption" index}}>{{get option displayKey}}</option>
+				{{else}}
+					<option value={{option}} selected={{eq selected option}} data-test-id={{concat "sbNativeFlatOption" index}}>{{option}}</option>
+				{{/if}}
+			{{/each}}
+		</select>
+		<i class="icon-expand"></i>
+	{{else}}
+		<i class="icon-expand"></i>
+		<input type="text" class="mdl-textfield__input select-box__dropdown" id="{{selectId}}" aria-labelled-by="{{labelId}}" value="{{selectedDisplay}}"  readonly=true onclick={{action "open"}}>
+		{{#unless emptyOptions}}
+			<div class="select-box__dropdown-container {{if searchableOptions "searchable"}} {{if dropdownOpen "open"}}">
+				{{#if isMobileOrTablet}}
+					{{#if (and label dropdownOpen)}}
+						<div class="select-box__dropdown-header">
+							{{#if showMobileSearch}}
+								{{ui-textfield placeholder=label value=queryString}}
+								<i class="icon-close" {{action "clearQuery"}}></i>
+							{{else}}
+								<div class="select-box_dropdown-label">{{label}}</div>
+								{{#if searchableOptions}}
+									<i class="icon-search" {{action "searchOptions"}}></i>
+								{{/if}}
+							{{/if}}
+							
+						</div>
+					{{/if}}
+				{{/if}}
+				<ol class="select-box__dropdown-list {{if showMobileSearch "search-visible"}}">
+					{{#each filterableOptions as |option index|}}
+						{{#if isDeepOptions}}
+							<li data-test-id={{concat "sbDeepOption" index}}> <a {{action  "selectItem" option}} class="{{if (eq selected (get option valueKey)) "selected"}} {{if option.filtered "filtered"}}" href="#" >{{get option displayKey}}</a></li>
+						{{else}}
+							<li data-test-id={{concat "sbFlatOption" index}}> <a {{action  "selectItem" option.val}} class="{{if (eq selected option.val) "selected"}} {{if option.filtered "filtered"}}" href="#" >{{option.val}}</a></li>
+						{{/if}}
+					{{/each}}
+					{{#if showEmptyState}}
+						<div class="select-box__dropdown-empty empty-state">
+							<i class="icon-search"></i>
+							<p>No results found</p>
+						</div>
+					{{/if}}
+				</ol>
+			</div>
+		{{/unless}}
+	{{/if}}
+</div>
