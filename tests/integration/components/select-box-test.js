@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { expect, assert } from 'chai';
 import { describe, it } from 'mocha';
 import { setupComponentTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
@@ -10,15 +10,15 @@ describe('Integration | Component | select box', function () {
     });
     it('renders', function () {
         this.render(hbs `{{select-box}}`);
-        expect(find('.select-box')).to.be.ok;
+        assert.isOk(find('.select-box'));
     });
     it('renders a native select box', function () {
         this.render(hbs `{{select-box nativeSelect=true}}`);
-        expect(find('select')).to.be.ok;
+        assert.isOk(find('select'));
     });
     it('renders a custom select box', function () {
         this.render(hbs `{{select-box}}`);
-        expect(find('.select-box__dropdown')).to.be.ok;
+        assert.isOk(find('.select-box__dropdown'));
     });
     it('handles custom deep options and filterable options', function () {
         this.set('displayKey', 'display');
@@ -114,7 +114,7 @@ describe('Integration | Component | select box', function () {
                 dropdownOpen=dropdownOpen }}`
             );
         click('.icon-search');
-        expect(find('.select-box__dropdown-header input')).to.be.ok;
+        assert.isOk(find('.select-box__dropdown-header input'));
     });
     it('shows empty state with invalid filter query', function () {
         this.set('media', {isDesktop: false});
@@ -136,11 +136,11 @@ describe('Integration | Component | select box', function () {
                 dropdownOpen=dropdownOpen 
                 showMobileSearch=showMobileSearch}}`
             );
-        expect(find('.select-box__dropdown-empty')).to.not.be.ok;
+        assert.isNotOk(find('.select-box__dropdown-empty'));
         fillIn('.select-box__dropdown-header input', 'thiz');
         return waitUntil(() => keyEvent('.select-box__dropdown-header input', 'keydown', 'z'))
             .then(() => {
-                expect(find('.select-box__dropdown-empty')).to.be.ok;
+                assert.isOk(find('.select-box__dropdown-empty'));
             });
     });
     it('filters deep options on mobile', function () {

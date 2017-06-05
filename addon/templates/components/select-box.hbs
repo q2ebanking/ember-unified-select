@@ -27,7 +27,7 @@
 					{{#if (and label dropdownOpen)}}
 						<div class="select-box__dropdown-header">
 							{{#if showMobileSearch}}
-								{{ui-textfield placeholder=label value=queryString}}
+								{{input placeholder=label value=queryString}}
 								<i class="icon-close" {{action "clearQuery"}}></i>
 							{{else}}
 								<div class="select-box_dropdown-label">{{label}}</div>

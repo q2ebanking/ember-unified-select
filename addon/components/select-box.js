@@ -20,9 +20,9 @@ export default Component.extend(clickElsewhere, {
         let value = get(this, `options.0.${get(this, 'valueKey')}`);
         return !(display === undefined && value === undefined);
     }),
-    selectedDisplay: computed('selected', 'options', 'valueKey', 'displayKey', 'isDeepOptions', function () {
+    selectedDisplay: computed('selected', 'filterableOptions', 'valueKey', 'displayKey', 'isDeepOptions', function () {
         if (get(this, 'isDeepOptions') && get(this, 'selected')) {
-            const selectedOption = get(this, 'options').findBy(get(this, 'valueKey'), get(this, 'selected'));
+            const selectedOption = get(this, 'filterableOptions').findBy(get(this, 'valueKey'), get(this, 'selected'));
             return get(selectedOption, get(this, 'displayKey'));
         } else {
             return get(this, 'selected');
