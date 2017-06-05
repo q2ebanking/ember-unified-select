@@ -35,19 +35,19 @@ For more information on using ember-cli, visit [https://ember-cli.com/](https://
 
 ## Example usage
 ```
-	{{select-box 
-		selectId=state_select 
-		options=statesArray 
-		disabled=disabled 
-		placeholder=placeholder 
-		selected=selected 
-		onchange=(action "onchange")
-		valueKey=valueKey
-		displayKey=displayKey
-		labelId=labelId 
-		nativeSelect=false
-		label=labelText
-	}}
+{{select-box 
+    selectId=state_select 
+    options=statesArray 
+    disabled=disabled 
+    placeholder=placeholder 
+    selected=selected 
+    onchange=(action "onchange")
+    valueKey=valueKey
+    displayKey=displayKey
+    labelId=labelId 
+    nativeSelect=false
+    label=labelText
+}}
 ```
 
 yields 
