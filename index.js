@@ -2,5 +2,5 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-select-box'
+  name: 'ember-unified-select'
 };

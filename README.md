@@ -1,13 +1,12 @@
-# ember-select-box
+# ember-unified-select
 
 This README outlines the details of collaborating on this Ember addon.
 
 ## Installation
 
 * `git clone <repository-url>` this repository
-* `cd ember-select-box`
+* `cd ember-unified-select`
 * `npm install`
-* `bower install`
 
 ## Running Independently
 
@@ -17,7 +16,7 @@ This README outlines the details of collaborating on this Ember addon.
 ## Running In Another App
 
 In Ember project
-* `npm link ember-select-box`
+* `npm link ember-unified-select`
 * call component in desired place with `{{select-box}}`
 * Build app
 
@@ -35,22 +34,22 @@ For more information on using ember-cli, visit [https://ember-cli.com/](https://
 
 ## Example usage
 ```
-{{select-box 
-    selectId=state_select 
-    options=statesArray 
-    disabled=disabled 
-    placeholder=placeholder 
-    selected=selected 
+{{select-box
+    selectId=state_select
+    options=statesArray
+    disabled=disabled
+    placeholder=placeholder
+    selected=selected
     onchange=(action "onchange")
     valueKey=valueKey
     displayKey=displayKey
-    labelId=labelId 
+    labelId=labelId
     nativeSelect=false
     label=labelText
 }}
 ```
 
-yields 
+yields
 
 ```
 <div id="ember858" class="select-box ember-view">
@@ -121,4 +120,4 @@ yields
 
 ## Code of Conduct
 
-ember-select-box conforms to Contributor Code of Conduct .
+ember-unified-select conforms to Contributor Code of Conduct .

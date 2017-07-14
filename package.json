@@ -1,17 +1,20 @@
 {
-  "name": "ember-select-box",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "name": "ember-unified-select",
+  "version": "0.1.0",
+  "description": "A mobile and UI friendly way to add a custom or native select box to an ember app.",
   "keywords": [
     "ember-addon"
   ],
-  "license": "MIT",
-  "author": "",
+  "license": "Apache-2.0",
+  "author": "Abdul Hamid",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/q2ebanking/ember-unified-select"
+  },
   "scripts": {
     "build": "ember build",
     "start": "ember server",

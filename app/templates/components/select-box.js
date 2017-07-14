@@ -1,1 +1,1 @@
-export { default } from 'ember-select-box/templates/components/select-box';
+export { default } from 'ember-unified-select/templates/components/select-box';
