@@ -1,5 +1,5 @@
 {
-  "name": "ember-unified-select",
+  "name": "@q2ebanking/ember-unified-select",
   "version": "0.1.0",
   "description": "A mobile and UI friendly way to add a custom or native select box to an ember app.",
   "keywords": [
@@ -8,12 +8,11 @@
   "license": "Apache-2.0",
   "author": "Abdul Hamid",
   "directories": {
-    "doc": "doc",
     "test": "tests"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/q2ebanking/ember-unified-select"
+    "url": "git+https://github.com/q2ebanking/ember-unified-select.git"
   },
   "scripts": {
     "build": "ember build",
@@ -61,5 +60,10 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/q2ebanking/ember-unified-select/issues"
+  },
+  "homepage": "https://github.com/q2ebanking/ember-unified-select#readme",
+  "main": "index.js"
 }
