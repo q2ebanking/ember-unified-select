@@ -1,7 +1,5 @@
-{{#if (and dropdownOpen options.length)}}
-	{{#if isMobileOrTablet}}
-		<div class="mobile-overlay" {{action "close"}}></div>
-	{{/if}}
+{{#if showMobileOverlay}}
+    <div class="mobile-overlay" {{action "close"}}></div>
 {{/if}}
 <div class="select-box__wrapper">
 	{{#if nativeSelect}}
@@ -23,21 +21,18 @@
 		<input type="text" class="mdl-textfield__input select-box__dropdown" id="{{selectId}}" aria-labelled-by="{{labelId}}" value="{{selectedDisplay}}"  readonly=true onclick={{action "open"}}>
 		{{#unless emptyOptions}}
 			<div class="select-box__dropdown-container {{if searchableOptions "searchable"}} {{if dropdownOpen "open"}}">
-				{{#if isMobileOrTablet}}
-					{{#if (and label dropdownOpen)}}
-						<div class="select-box__dropdown-header">
-							{{#if showMobileSearch}}
-								{{input placeholder=label value=queryString}}
-								<i class="icon-close" {{action "clearQuery"}}></i>
-							{{else}}
-								<div class="select-box_dropdown-label">{{label}}</div>
-								{{#if searchableOptions}}
-									<i class="icon-search" {{action "searchOptions"}}></i>
-								{{/if}}
-							{{/if}}
-							
-						</div>
-					{{/if}}
+				{{#if showMobileHeader}}
+                    <div class="select-box__dropdown-header">
+                        {{#if showMobileSearch}}
+                            {{input placeholder=label value=queryString}}
+                            <i class="icon-close" {{action "clearQuery"}}></i>
+                        {{else}}
+                            <div class="select-box_dropdown-label">{{label}}</div>
+                            {{#if searchableOptions}}
+                                <i class="icon-search" {{action "searchOptions"}}></i>
+                            {{/if}}
+                        {{/if}}
+                    </div>
 				{{/if}}
 				<ol class="select-box__dropdown-list {{if showMobileSearch "search-visible"}}">
 					{{#each filterableOptions as |option index|}}
