@@ -31,8 +31,8 @@ export default Component.extend(clickElsewhere, {
 	
 	emptyOptions: empty('options'),
 	
-    searchableOptions: gt('options.length', 10),
     showMobileSearch: false,
+    searchableOptions: gt('options.length', 10),
     queryString: '',
     filterableOptions: map('options', function (option) {
         if (get(this, 'isDeepOptions')) {
@@ -46,6 +46,8 @@ export default Component.extend(clickElsewhere, {
     noFilteredResults: empty('filteredOptions'),
 	
     isMobileOrTablet: not('media.isDesktop'),
+    showMobileOverlay: and('dropdownOpen', 'options.length', 'isMobileOrTablet'),
+    showMobileHeader: and('dropdownOpen', 'label', 'isMobileOrTablet'),
     showEmptyState: and('noFilteredResults', 'isMobileOrTablet'),
 
     closeDropdown() {
@@ -143,7 +145,9 @@ export default Component.extend(clickElsewhere, {
 
     actions: {
         selectItem(option) {
-            this.attrs.onchange(option[get(this, 'valueKey')] || option);
+            let value = option[get(this, 'valueKey')] || option;
+            set(this, 'selected', value);
+            this.attrs.onchange(value);
             this.closeDropdown();
             this.$('.select-box__dropdown').focus();
         },
