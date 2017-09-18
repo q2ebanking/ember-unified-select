@@ -28,7 +28,7 @@ export default Component.extend(clickElsewhere, {
             return get(this, 'selected');
         }
     }),
-
+ 
     emptyOptions: empty('options'),
 
     showMobileSearch: false,
