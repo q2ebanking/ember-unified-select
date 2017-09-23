@@ -28,9 +28,9 @@ export default Component.extend(clickElsewhere, {
             return get(this, 'selected');
         }
     }),
-	
-	emptyOptions: empty('options'),
-	
+
+    emptyOptions: empty('options'),
+
     showMobileSearch: false,
     searchableOptions: gt('options.length', 10),
     queryString: '',
@@ -44,7 +44,7 @@ export default Component.extend(clickElsewhere, {
     }),
     filteredOptions: filterBy('filterableOptions', 'filtered', true),
     noFilteredResults: empty('filteredOptions'),
-	
+
     isMobileOrTablet: not('media.isDesktop'),
     showMobileOverlay: and('dropdownOpen', 'options.length', 'isMobileOrTablet'),
     showMobileHeader: and('dropdownOpen', 'label', 'isMobileOrTablet'),
@@ -82,13 +82,12 @@ export default Component.extend(clickElsewhere, {
     },
 
     filterOptions(key) {
-        let options = get(this, 'filterableOptions');
         let queryString = get(this, 'queryString');
         if (get(this, 'media.isDesktop')) {
             queryString = queryString + key;
             set(this, 'queryString', queryString);
         }
-        options = options.find((option) => {
+        get(this, 'filterableOptions').find((option) => {
             let display = get(this, 'isDeepOptions') ? option[get(this, 'displayKey')] : option.val;
             if (display.toLowerCase().indexOf(queryString.toLowerCase()) === 0) {
                 set(option, 'filtered', true);
