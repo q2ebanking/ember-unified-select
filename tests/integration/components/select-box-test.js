@@ -32,7 +32,7 @@ describe('Integration | Component | select box', function () {
         this.set('valueKey', 'value');
         this.set('options', [{value:'1', display: 'first'}, {value:'2', display: 'second'}, {value:'3', display: 'third'}, {value:'4', display: 'fourth'}]);
         this.render(hbs `{{select-box options=options displayKey=displayKey valueKey=valueKey nativeSelect=true}}`);
-        expect(findAll('[data-test-id^="sbNativeDeepOption"]')).to.have.lengthOf(4);
+        expect(findAll('select option')).to.have.lengthOf(4);
     });
     it('handles custom flat options and filterable options', function () {
         this.set('options', ['1', '2', '3', '4']);
@@ -42,7 +42,7 @@ describe('Integration | Component | select box', function () {
     it('handles native flat options', function () {
         this.set('options', ['1', '2', '3', '4']);
         this.render(hbs `{{select-box options=options nativeSelect=true}}`);
-        expect(findAll('[data-test-id^="sbNativeFlatOption"]')).to.have.lengthOf(4);
+        expect(findAll('select option')).to.have.lengthOf(4);
     });
     it('displays correct selected value for custom deep options', function () {
         this.set('displayKey', 'display');
@@ -65,7 +65,7 @@ describe('Integration | Component | select box', function () {
         this.set('selected', '3');
         this.render(hbs `{{select-box options=options selected=selected valueKey=valueKey displayKey=displayKey nativeSelect=true}}`);
         expect(find('select').value).to.eq('3');
-        expect(this.$('[data-test-id^="sbNativeDeepOption"]:selected').text()).to.eq('third');
+        expect(this.$('select option:selected').text().trim()).to.eq('third');
     }); 
     it('binds correct selected value for native flat options', function () {
         this.set('options', ['1', '2', '3', '4']);

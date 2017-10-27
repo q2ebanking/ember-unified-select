@@ -5,18 +5,17 @@
 {{/if}}
 <div class="select-box__wrapper">
 	{{#if nativeSelect}}
-		<select name="{{selectId}}" id="{{selectId}}" class="mdl-textfield__input" onchange={{action "selectItem" value="target.value"}}>
-			{{#if placeholder}}
-				<option value="" selected>{{placeholder}}</option>
-			{{/if}}
-			{{#each options as |option index|}}
-				{{#if isDeepOptions}}
-					<option value={{get option valueKey}} selected={{eq selected (get option valueKey)}} data-test-id={{concat "sbNativeDeepOption" index}}>{{get option displayKey}}</option>
-				{{else}}
-					<option value={{option}} selected={{eq selected option}} data-test-id={{concat "sbNativeFlatOption" index}}>{{option}}</option>
-				{{/if}}
-			{{/each}}
-		</select>
+		{{select-light
+			name=selectId
+			id=selectId
+			class="mdl-textfield__input"
+			placeholder=placeholder
+			value=selected
+			valueKey=valueKey
+			displayKey=displayKey
+			options=options
+			change=(action "selectItem" value="target.value")
+			}}
 		<i class="icon-expand"></i>
 	{{else}}
 		<i class="icon-expand"></i>
