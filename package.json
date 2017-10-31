@@ -1,6 +1,6 @@
 {
   "name": "@q2ebanking/ember-unified-select",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A mobile and UI friendly way to add a custom or native select box to an ember app.",
   "keywords": [
     "ember-addon"
