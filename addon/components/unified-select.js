@@ -122,10 +122,6 @@ export default Component.extend(clickElsewhere, {
 
         this.selectOption(newOptionValue, false)
     },
-    selectNextOption() {
-        const isOpen = get(this, 'dropdownOpen');
-
-    },
     focusAdjacentLi(direction) {
         let focusedParent = this.$('.unified-select-dropdown-list a:focus').parent();
         let dropdownItem = this.$('.unified-select-dropdown-list a');
