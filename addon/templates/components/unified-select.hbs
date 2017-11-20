@@ -1,0 +1,65 @@
+{{#if showMobileOverlay}}
+    <div class="mobile-overlay" {{action "close"}}></div>
+{{/if}}
+<div class="unified-select-wrapper">
+    {{#if nativeSelect}}
+        {{select-light
+            name=selectId
+            id=selectId
+            class="unified-select-dropdown"
+            placeholder=placeholder
+            value=selected
+            valueKey=valueKey
+            displayKey=displayKey
+            options=options
+            change=(action "selectItem" value="target.value")
+        }}
+        <span class="icon-expand">Expand</span>
+    {{else}}
+        <span class="icon-expand">Expand</span>
+        <input type="text" class="unified-select-dropdown" id="{{selectId}}" aria-labelled-by="{{labelId}}" value="{{selectedDisplay}}"  readonly=true onclick={{action "open"}}>
+        {{#unless emptyOptions}}
+	<div class="unified-select-dropdown-container {{if searchableOptions "searchable"}} {{if dropdownOpen "open"}}">
+	     {{#if showMobileHeader}}
+                    <div class="unified-select-dropdown-header">
+                        {{#if showMobileSearch}}
+                            {{input placeholder=label value=queryString}}
+                            <button class="unified-select-close-query"  {{action "clearQuery"}}>
+                                <span class="icon-close"> Close</span>
+                                Close
+                            </button>
+                        {{else}}
+                            <div class="unified-select-dropdown-label">{{label}}</div>
+                            {{#if searchableOptions}}
+                                <button class="unified-select-search-btn" {{action "searchOptions"}}>
+                                    <span class="icon-search">Filter</span>
+                                </button>
+                            {{/if}}
+                        {{/if}}
+                    </div>
+                {{/if}}
+                <ol class="unified-select-dropdown-list {{if showMobileSearch "search-visible"}}">
+                    {{#each filterableOptions as |option index|}}
+                        {{#if isDeepOptions}}
+		      <li data-test-id={{concat "sbDeepOption" index}}>
+                                <a {{action  "selectItem" option}} class="{{if (is-equal selected (get option valueKey)) "selected"}} {{if option.filtered "filtered"}}" href="javascript://" >
+                                    {{get option displayKey}}
+                                </a>
+                            </li>
+                        {{else}}
+                            <li data-test-id={{concat "sbFlatOption" index}}>
+                                <a {{action  "selectItem" option.val}} class="{{if (is-equal selected option.val) "selected"}} {{if option.filtered "filtered"}}" href="#" >{{option.val}}</a>
+                            </li>
+                        {{/if}}
+                    {{/each}}
+                    {{#if showEmptyState}}
+                        <div class="unified-select-dropdown-empty empty-state">
+                            <span class="icon-search">Search</span>
+                            <p>No results found</p>
+                        </div>
+                    {{/if}}
+                </ol>
+	</div>
+        {{/unless}}
+    {{/if}}
+</div>

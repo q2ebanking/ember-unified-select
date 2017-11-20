@@ -1,5 +1,5 @@
-.select-box {
-  .select-box__wrapper {
+.unified-select {
+  .unified-select-wrapper {
     position: relative;
     text-transform: capitalize;
   }
@@ -9,7 +9,7 @@
     -webkit-appearance: none;
     padding-top: 1.14286rem;
   }
-  .select-box__dropdown {
+  .unified-select-dropdown {
     cursor: pointer;
     position: relative;
     text-transform: capitalize;
@@ -26,7 +26,7 @@
     color: #333333;
     transition: .5s all ease-in;
   }
-  .select-box__dropdown-container {
+  .unified-select-dropdown-container {
     position: absolute;
     width: 100%;
     top: 0;
@@ -45,7 +45,7 @@
       &.searchable {
         top: 1.5rem;
         transform: translate(-50%, 0);
-        .select-box__dropdown-list a {
+        .unified-select-dropdown-list a {
           display: none;
           &.filtered {
             display: block;
@@ -59,7 +59,7 @@
     &.open {
       box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
       margin-bottom: 3rem;
-      .select-box__dropdown-list {
+      .unified-select-dropdown-list {
         display: block;
         margin: 0;
         @include breakpoint(large) {
@@ -72,7 +72,7 @@
       }
     }
   }
-  .select-box__dropdown-header {
+  .unified-select-dropdown-header {
     position: fixed;
     padding: .5rem .75rem .75rem;
     width: 100%;
@@ -82,13 +82,13 @@
     box-sizing: border-box;
     text-align: center;
     border-bottom: 1px solid #eeeeee;
-    .select-box_dropdown-label {
+    .unified-select-dropdown-label {
       padding-top: .25rem;
     }
     .ui-textfield {
       padding-bottom: 0;
     }
-    .mdl-textfield__input {
+    .unified-select-dropdown {
       padding: 0;
       height: 3rem;
       width: calc(100% - 2.5rem);
@@ -100,7 +100,7 @@
       }
     }
   }
-  .select-box__dropdown-list {
+  .unified-select-dropdown-list {
     display: none;
     list-style: none;
     padding: 0;
