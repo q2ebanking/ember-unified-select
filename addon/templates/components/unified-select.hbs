@@ -14,9 +14,9 @@
             options=options
             change=(action "selectItem" value="target.value")
         }}
-        <span class="icon-expand">Expand</span>
+        <span class={{expandIcon}}>Expand</span>
     {{else}}
-        <span class="icon-expand">Expand</span>
+        <span class={{expandIcon}}>Expand</span>
         <input type="text" class="unified-select-dropdown" id="{{selectId}}" aria-labelled-by="{{labelId}}" value="{{selectedDisplay}}"  readonly=true onclick={{action "open"}}>
         {{#unless emptyOptions}}
 	<div class="unified-select-dropdown-container {{if searchableOptions "searchable"}} {{if dropdownOpen "open"}}">
@@ -25,14 +25,13 @@
                         {{#if showMobileSearch}}
                             {{input placeholder=label value=queryString}}
                             <button class="unified-select-close-query"  {{action "clearQuery"}}>
-                                <span class="icon-close"> Close</span>
-                                Close
+                                <span class={{closeIcon}}> Close</span>
                             </button>
                         {{else}}
                             <div class="unified-select-dropdown-label">{{label}}</div>
                             {{#if searchableOptions}}
                                 <button class="unified-select-search-btn" {{action "searchOptions"}}>
-                                    <span class="icon-search">Filter</span>
+                                    <span class={{filterIcon}}>Filter</span>
                                 </button>
                             {{/if}}
                         {{/if}}
@@ -48,14 +47,16 @@
                             </li>
                         {{else}}
                             <li data-test-id={{concat "sbFlatOption" index}}>
-                                <a {{action  "selectItem" option.val}} class="{{if (is-equal selected option.val) "selected"}} {{if option.filtered "filtered"}}" href="#" >{{option.val}}</a>
+                                <a {{action  "selectItem" option.val}} class="{{if (is-equal selected option.val) "selected"}} {{if option.filtered "filtered"}}" href="javascript://" >
+                                    {{option.val}}
+                                </a>
                             </li>
                         {{/if}}
                     {{/each}}
                     {{#if showEmptyState}}
                         <div class="unified-select-dropdown-empty empty-state">
-                            <span class="icon-search">Search</span>
-                            <p>No results found</p>
+                            <span class={{emptyFilterIcon}}></span>
+                            <p>{{emptyFilterText}}</p>
                         </div>
                     {{/if}}
                 </ol>

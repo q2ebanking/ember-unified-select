@@ -29,6 +29,19 @@ export default Component.extend(clickElsewhere, {
     placeholder: '',
     selected: '',
     dropdownOpen: false,
+    expandIcon: 'expand',
+    closeIcon: 'close',
+    filterIcon: 'search',
+    media: null,
+    emptyFilterIcon: computed('filterIcon', {
+        get() {
+            return get(this, 'filterIcon');
+        },
+        set(key, value) {
+            return value;
+        }
+    }),
+    filterIcon: 'search',
 
     valueKey: 'name',
     displayKey: 'name',
@@ -39,9 +52,9 @@ export default Component.extend(clickElsewhere, {
     }),
     selectedDisplay: computed('selected', 'filterableOptions', 'valueKey', 'displayKey', 'isDeepOptions', function () {
         const isDeepOptions = get(this, 'isDeepOptions');
-        const selected = get(this, 'selected');
         const filterableOptions = get(this, 'filterableOptions');
         const valueKey = get(this, 'valueKey');
+        const selected = get(this, 'selected');
         const displayKey = get(this, 'displayKey');
 
         return isDeepOptions ? get(filterableOptions.findBy(valueKey, selected), displayKey) : selected;
@@ -56,7 +69,10 @@ export default Component.extend(clickElsewhere, {
             set(option, 'filtered', true);
             return option;
         } else {
-            return { val: option, filtered: true};
+            return {
+                val: option,
+                filtered: true
+            };
         }
     }),
     filteredOptions: filterBy('filterableOptions', 'filtered', true),
@@ -104,6 +120,7 @@ export default Component.extend(clickElsewhere, {
         const filterableOptions = get(this, 'filterableOptions');
         const valueKey = isDeepOptions ? get(this, 'valueKey') : 'val';
         const selected = get(this, 'selected');
+
         const selectedOption = filterableOptions.findBy(valueKey, selected); 
         const selectedIndex = filterableOptions.indexOf(selectedOption);
         let newOption = selectedOption;
@@ -115,14 +132,14 @@ export default Component.extend(clickElsewhere, {
             newOption = filterableOptions[selectedIndex - 1];
         }
         if (isOpen) {
-            this.focusAdjacentLi(direction);
+            this.focusAdjacentOption(direction);
         }
 
         newOptionValue = get(newOption, valueKey);
 
         this.selectOption(newOptionValue, false)
     },
-    focusAdjacentLi(direction) {
+    focusAdjacentOption(direction) {
         let focusedParent = this.$('.unified-select-dropdown-list a:focus').parent();
         let dropdownItem = this.$('.unified-select-dropdown-list a');
         let newFocus = focusedParent[direction](dropdownItem).children('a');
