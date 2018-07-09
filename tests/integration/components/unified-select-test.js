@@ -77,7 +77,7 @@ describe('Integration | Component | unified select', function () {
         this.set('media', {isDesktop: false});
         this.set('label', 'Label');
         this.set('dropdownOpen', true);
-        this.set('showMobileSearch', true);
+        this.set('showModalSearch', true);
         this.set('valueKey', 'value');
         this.set('displayKey', 'display');
         this.set('queryString', 'thi');
@@ -91,7 +91,7 @@ describe('Integration | Component | unified select', function () {
                 media=media 
                 label=label 
                 dropdownOpen=dropdownOpen 
-                showMobileSearch=showMobileSearch}}`
+                showModalSearch=showModalSearch}}`
             );
         keyEvent('.unified-select-dropdown-header input', 'keydown', 116);
         click('.icon-close');
@@ -120,7 +120,7 @@ describe('Integration | Component | unified select', function () {
         this.set('media', {isDesktop: false});
         this.set('label', 'Label');
         this.set('dropdownOpen', true);
-        this.set('showMobileSearch', true);
+        this.set('showModalSearch', true);
         this.set('valueKey', 'value');
         this.set('displayKey', 'display');
         this.set('queryString', 'thi');
@@ -134,7 +134,7 @@ describe('Integration | Component | unified select', function () {
                 media=media 
                 label=label 
                 dropdownOpen=dropdownOpen 
-                showMobileSearch=showMobileSearch}}`
+                showModalSearch=showModalSearch}}`
             );
         assert.isNotOk(find('.unified-select-dropdown-empty'));
         fillIn('.unified-select-dropdown-header input', 'thiz');
@@ -143,11 +143,11 @@ describe('Integration | Component | unified select', function () {
                 assert.isOk(find('.unified-select-dropdown-empty'));
             });
     });
-    it('filters deep options on mobile', function () {
+    it('filters deep options on modal', function () {
         this.set('media', {isDesktop: false});
         this.set('label', 'Label');
         this.set('dropdownOpen', true);
-        this.set('showMobileSearch', true);
+        this.set('showModalSearch', true);
         this.set('valueKey', 'value');
         this.set('displayKey', 'display');
         this.set('queryString', 'thi');
@@ -161,7 +161,7 @@ describe('Integration | Component | unified select', function () {
                 media=media 
                 label=label 
                 dropdownOpen=dropdownOpen 
-                showMobileSearch=showMobileSearch}}`
+                showModalSearch=showModalSearch}}`
             );
         fillIn('.unified-select-dropdown-header input', 'thir');
         return waitUntil(() => keyEvent('.unified-select-dropdown-header input', 'keydown', 'r'))

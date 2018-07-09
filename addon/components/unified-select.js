@@ -13,11 +13,12 @@ const {
         map,
         not
     },
+    guidFor,
     run: {
+        debounce,
         next,
-        debounce
     },
-    Component
+    Component,
 } = Ember;
 
 export default Component.extend(clickElsewhere, {
@@ -29,20 +30,7 @@ export default Component.extend(clickElsewhere, {
     placeholder: '',
     selected: '',
     dropdownOpen: false,
-    expandIcon: 'expand',
-    closeIcon: 'close',
-    filterIcon: 'search',
-    media: null,
-    emptyFilterIcon: computed('filterIcon', {
-        get() {
-            return get(this, 'filterIcon');
-        },
-        set(key, value) {
-            return value;
-        }
-    }),
-    filterIcon: 'search',
-
+    selectId: '',
     valueKey: 'name',
     displayKey: 'name',
     isDeepOptions: computed('options', 'displayKey', 'valueKey', function () {
@@ -61,7 +49,7 @@ export default Component.extend(clickElsewhere, {
     }),
     emptyOptions: empty('options'),
 
-    showMobileSearch: false,
+    showModalSearch: false,
     searchableOptions: gt('options.length', 10),
     queryString: '',
     filterableOptions: map('options', function (option) {
@@ -78,14 +66,31 @@ export default Component.extend(clickElsewhere, {
     filteredOptions: filterBy('filterableOptions', 'filtered', true),
     noFilteredResults: empty('filteredOptions'),
 
-    isMobileOrTablet: not('media.isDesktop'),
-    showMobileOverlay: and('dropdownOpen', 'options.length', 'isMobileOrTablet'),
-    showMobileHeader: and('dropdownOpen', 'label', 'isMobileOrTablet'),
-    showEmptyState: and('noFilteredResults', 'isMobileOrTablet'),
+    showInline: true,
+    showAsModal: not('showInline'),
+    showModalOverlay: and('dropdownOpen', 'options.length', 'showAsModal'),
+    showModalHeader: and('dropdownOpen', 'label', 'showAsModal'),
+    showEmptyState: and('noFilteredResults', 'showAsModal'),
+
+    closeLabel: 'Close',
+    clearLabel: 'Clear Filter',
+    filterLabel: 'Filter Options',
+    emptyFilterText: 'No options available',
+
+    dropdownId: computed(function() {
+        return `unified-select-dropdown-list-${guidFor(this)}`;
+    }),
+    dropdownClasses: computed('searchableOptions', 'dropdownOpen', 'showAsModal', function() {
+        const searchable = get(this, 'searchableOptions') ? ' searchable' : '';
+        const open = get(this, 'dropdownOpen') ? ' open' : '';
+        const asModal = get(this, 'showAsModal') ? ' as-modal' : '';
+
+        return `unified-select-dropdown-container${searchable}${open}${asModal}`;
+    }),
 
     closeDropdown(retainFocus = true) {
         set(this, 'dropdownOpen', false);
-        set(this, 'showMobileSearch', false);
+        set(this, 'showModalSearch', false);
 
         if (retainFocus) {
             next(() => this.$('.unified-select-dropdown').focus());
@@ -121,14 +126,14 @@ export default Component.extend(clickElsewhere, {
         const valueKey = isDeepOptions ? get(this, 'valueKey') : 'val';
         const selected = get(this, 'selected');
 
-        const selectedOption = filterableOptions.findBy(valueKey, selected); 
+        const selectedOption = filterableOptions.findBy(valueKey, selected);
         const selectedIndex = filterableOptions.indexOf(selectedOption);
         let newOption = selectedOption;
         let newOptionValue = selected;
 
         if (direction === 'next' && selectedIndex < filterableOptions.length - 1) {
             newOption = filterableOptions[selectedIndex + 1];
-        } else if (direction === 'prev' && selectedIndex > 0){
+        } else if (direction === 'prev' && selectedIndex > 0) {
             newOption = filterableOptions[selectedIndex - 1];
         }
         if (isOpen) {
@@ -152,20 +157,20 @@ export default Component.extend(clickElsewhere, {
 
     filterOptions(key) {
         let queryString = get(this, 'queryString');
-        if (get(this, 'media.isDesktop')) {
+        if (get(this, 'showInline')) {
             queryString = queryString + key;
             set(this, 'queryString', queryString);
         }
         get(this, 'filterableOptions').find((option) => {
             let display = get(this, 'isDeepOptions') ? option[get(this, 'displayKey')] : option.val;
-            if (display.toLowerCase().indexOf(queryString.toLowerCase()) === 0) {
+            if (display.toLowerCase().includes(queryString.toLowerCase())) {
                 set(option, 'filtered', true);
             } else {
                 set(option, 'filtered', false);
             }
         });
         next(() => {
-            if (get(this, 'media.isDesktop') && this.$('.unified-select-dropdown-list a.filtered').length > 0) {
+            if (get(this, 'showInline') && this.$('.unified-select-dropdown-list a.filtered').length > 0) {
                 this.$('.unified-select-dropdown-list a.filtered')[0].focus();
             }
         });
@@ -176,7 +181,7 @@ export default Component.extend(clickElsewhere, {
     },
 
     keyDown(event) {
-        const key = event.key;
+        const key = event.key
         if (key && !get(this, 'nativeSelect')) {
             switch (key) {
                 case "Tab":
@@ -188,8 +193,12 @@ export default Component.extend(clickElsewhere, {
                 case "Shift":
                     break;
                 case "Escape":
+                    this.closeDropdown();
                     break;
-                case " "://Space
+                case "Esc"://for IE
+                    this.closeDropdown();
+                    break;
+                case " ": //Space
                     this.toggleDropdown();
                     event.preventDefault();
                     break;
@@ -202,9 +211,9 @@ export default Component.extend(clickElsewhere, {
                     this.selectAdjacentOption('next');
                     break;
                 default:
-                    this.openDropdown();
+                    if (!get(this, 'dropdownOpen')) this.openDropdown();
                     next(() => this.filterOptions(key));
-                    if (get(this, 'media.isDesktop')) {
+                    if (get(this, 'showInline')) {
                         debounce(this, this.clearFilter, 300);
                     }
             }
@@ -222,10 +231,13 @@ export default Component.extend(clickElsewhere, {
             this.closeDropdown();
         },
         searchOptions() {
-            this.toggleProperty('showMobileSearch');
+            this.toggleProperty('showModalSearch');
         },
         clearQuery() {
             this.clearFilter();
+        },
+        updateQuery(e) {
+            set(this, 'queryString', e.target.value);
         }
     }
 });

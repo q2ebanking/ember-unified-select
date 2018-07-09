@@ -23,19 +23,19 @@ export default Mixin.create({
             set(this, 'isFocused', isThisElement || isFocused);
         }
     },
-    _boundHandler: null,
 
     didInsertElement() {
         this._super(...arguments);
+        this._clickHandler = this._clickHandler.bind(this);
         if (!get(this, 'isDisabled')) {
-            $(document).on('mousedown dragstart touchstart', () => get(this, '_clickHandler'));
+            $(document).on('mousedown dragstart touchstart', this._clickHandler);
         }
     },
 
     willDestroyElement() {
         this._super(...arguments);
         if (!get(this, 'isDisabled')) {
-            $(document).off('mousedown dragstart touchstart');
+            $(document).off('mousedown dragstart touchstart', this._clickHandler);
         }
     }
 });

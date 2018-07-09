@@ -6,8 +6,4 @@ module.exports = {
     isDevelopingAddon() {
         return true;
     },
-    included: function(app) {
-        app.import('vendor/unified-select.css');
-        this._super.included.call(this, app);
-    },
 };

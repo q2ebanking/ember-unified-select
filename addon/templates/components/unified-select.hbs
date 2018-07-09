@@ -1,5 +1,5 @@
-{{#if showMobileOverlay}}
-    <div class="mobile-overlay" {{action "close"}}></div>
+{{#if showModalOverlay}}
+    <div class="unified-select-modal-overlay" {{action "close"}}></div>
 {{/if}}
 <div class="unified-select-wrapper">
     {{#if nativeSelect}}
@@ -14,40 +14,43 @@
             options=options
             change=(action "selectItem" value="target.value")
         }}
-        <span class={{expandIcon}}>Expand</span>
     {{else}}
-        <span class={{expandIcon}}>Expand</span>
-        <input type="text" class="unified-select-dropdown" id="{{selectId}}" aria-labelled-by="{{labelId}}" value="{{selectedDisplay}}"  readonly=true onclick={{action "open"}}>
+        <img class="icon" src="../../ember-unified-select/images/chevron-down-icon.svg" alt="Expand" aria-hidden="true">
+        <input type="text" class="unified-select-dropdown" id="{{selectId}}" aria-labelled-by="{{labelId}}" value="{{selectedDisplay}}"
+            readonly=true onclick= {{action "open"}} aria-haspopup="true" aria-controls={{dropdownId}}>
         {{#unless emptyOptions}}
-	<div class="unified-select-dropdown-container {{if searchableOptions "searchable"}} {{if dropdownOpen "open"}}">
-	     {{#if showMobileHeader}}
+            <div class="{{dropdownClasses}}">
+                {{#if showModalHeader}}
                     <div class="unified-select-dropdown-header">
-                        {{#if showMobileSearch}}
-                            {{input placeholder=label value=queryString}}
-                            <button class="unified-select-close-query"  {{action "clearQuery"}}>
-                                <span class={{closeIcon}}> Close</span>
+                        {{#if showModalSearch}}
+                            {{input class="unified-select-filter-input" placeholder=label value=queryString}}
+                            {{!--<input placeholder="{{label}}" value="{{readonly queryString}}" aria-controls="{{dropdownId}}" onchange="{{action "updateQuery"}}"/>--}}
+                            <button class="unified-select-close-query" {{action "clearQuery"}} aria-label={{clearLabel}}>
+                                <img class="icon" src="../../ember-unified-select/images/close-icon.svg" alt={{clearLabel}} aria-hidden="true">
                             </button>
                         {{else}}
                             <div class="unified-select-dropdown-label">{{label}}</div>
                             {{#if searchableOptions}}
-                                <button class="unified-select-search-btn" {{action "searchOptions"}}>
-                                    <span class={{filterIcon}}>Filter</span>
+                                <button class="unified-select-search-btn" {{action "searchOptions"}} aria-label={{filterLabel}}>
+                                    <img class="icon"  src="../../ember-unified-select/images/search-icon.svg" alt={{filterLabel}} aria-hidden="true">
                                 </button>
                             {{/if}}
                         {{/if}}
                     </div>
                 {{/if}}
-                <ol class="unified-select-dropdown-list {{if showMobileSearch "search-visible"}}">
+                <ul id={{dropdownId}} class="unified-select-dropdown-list {{if showModalSearch "search-visible"}}" aria-live="polite">
                     {{#each filterableOptions as |option index|}}
                         {{#if isDeepOptions}}
-		      <li data-test-id={{concat "sbDeepOption" index}}>
-                                <a {{action  "selectItem" option}} class="{{if (is-equal selected (get option valueKey)) "selected"}} {{if option.filtered "filtered"}}" href="javascript://" >
+                            <li data-test-id= {{concat "sbDeepOption" index}}>
+                                <a {{action  "selectItem" option}} class="{{if (is-equal selected (get option valueKey)) "selected"}} {{if option.filtered "filtered"}}"
+                                    href="javascript://">
                                     {{get option displayKey}}
                                 </a>
                             </li>
                         {{else}}
-                            <li data-test-id={{concat "sbFlatOption" index}}>
-                                <a {{action  "selectItem" option.val}} class="{{if (is-equal selected option.val) "selected"}} {{if option.filtered "filtered"}}" href="javascript://" >
+                            <li data-test-id= {{concat "sbFlatOption" index}}>
+                                <a {{action  "selectItem" option.val}} class="{{if (is-equal selected option.val) "selected"}} {{if option.filtered "filtered"}}"
+                                    href="javascript://">
                                     {{option.val}}
                                 </a>
                             </li>
@@ -55,12 +58,12 @@
                     {{/each}}
                     {{#if showEmptyState}}
                         <div class="unified-select-dropdown-empty empty-state">
-                            <span class={{emptyFilterIcon}}></span>
+                            <img class="icon" src="../../ember-unified-select/images/search-icon.svg" alt={{emptyFilterText}} aria-hidden="true">
                             <p>{{emptyFilterText}}</p>
                         </div>
                     {{/if}}
-                </ol>
-	</div>
+                </ul>
+            </div>
         {{/unless}}
     {{/if}}
 </div>
