@@ -42,10 +42,16 @@ export default Component.extend(clickElsewhere, {
         const isDeepOptions = get(this, 'isDeepOptions');
         const filterableOptions = get(this, 'filterableOptions');
         const valueKey = get(this, 'valueKey');
-        const selected = get(this, 'selected');
         const displayKey = get(this, 'displayKey');
+        let selected = get(this, 'selected');
 
-        return isDeepOptions ? get(filterableOptions.findBy(valueKey, selected), displayKey) : selected;
+        if (isDeepOptions) {
+            let selectedDeepOption = filterableOptions.findBy(valueKey, selected);
+
+            selected = selectedDeepOption ? get(selectedDeepOption, displayKey) : '';
+        }
+
+        return selected;
     }),
     emptyOptions: empty('options'),
 
