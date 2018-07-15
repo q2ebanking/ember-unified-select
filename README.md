@@ -17,7 +17,7 @@ This README outlines the details of collaborating on this Ember addon.
 
 In Ember project
 * `npm link ember-unified-select`
-* call component in desired place with `{{select-box}}`
+* call component in desired place with `{{unified-select}}`
 * Build app
 
 ## Running Tests
@@ -34,7 +34,7 @@ For more information on using ember-cli, visit [https://ember-cli.com/](https://
 
 ## Example usage
 ```
-{{select-box
+{{unified-select
     selectId=state_select
     options=statesArray
     disabled=disabled
@@ -52,12 +52,12 @@ For more information on using ember-cli, visit [https://ember-cli.com/](https://
 yields
 
 ```
-<div id="ember858" class="select-box ember-view">
-    <div class="select-box__wrapper">
+<div id="ember858" class="unified-select ember-view">
+    <div class="unified-select-wrapper">
         <i class="icon-expand"></i>
-        <input type="text" id="state_select" aria-labelled-by="state_label" readonly="true" class="mdl-textfield__input select-box__dropdown">
-        <div class="select-box__dropdown-container searchable ">
-            <ol class="select-box__dropdown-list ">
+        <input type="text" id="state_select" aria-labelled-by="state_label" readonly="true" class="unified-select-dropdown">
+        <div class="unified-select-dropdown-container searchable ">
+            <ol class="unified-select-dropdown-list ">
                 <li data-test-id="sbDeepOption0"> <a href="#" class=" filtered" data-ember-action-859="859">Alabama</a></li>
                 <li data-test-id="sbDeepOption1"> <a href="#" class=" filtered" data-ember-action-860="860">Alaska</a></li>
                 <li data-test-id="sbDeepOption2"> <a href="#" class=" filtered" data-ember-action-861="861">Arizona</a></li>
