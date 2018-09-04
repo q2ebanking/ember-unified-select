@@ -43,7 +43,6 @@ For more information on using ember-cli, visit [https://ember-cli.com/](https://
     onchange=(action "onchange")
     valueKey=valueKey
     displayKey=displayKey
-    labelId=labelId
     nativeSelect=false
     label=labelText
 }}
