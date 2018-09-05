@@ -13,18 +13,17 @@
             displayKey=displayKey
             options=options
             change=(action "selectItem" value="target.value")
+            disabled=disabled
         }}
     {{else}}
-        <img class="icon" src="../../ember-unified-select/images/chevron-down-icon.svg" alt="Expand" aria-hidden="true">
-        <input type="text" class="unified-select-dropdown" id="{{selectId}}" aria-labelled-by="{{labelId}}" value="{{selectedDisplay}}"
-            readonly=true onclick= {{action "open"}} aria-haspopup="true" aria-controls={{dropdownId}}>
+        <input type="text" class="unified-select-dropdown" id="{{selectId}}" value="{{selectedDisplay}}"
+            readonly=true placeholder={{placeholder}} onclick= {{action "open"}} aria-haspopup="listbox" aria-controls={{dropdownId}} aria-expanded={{isOpen}} disabled={{disabled}}>
         {{#unless emptyOptions}}
-            <div class="{{dropdownClasses}}">
+            <div class="unified-select-dropdown-container {{dropdownClasses}}" tabindex="-1">
                 {{#if showModalHeader}}
                     <div class="unified-select-dropdown-header">
                         {{#if showModalSearch}}
-                            {{input class="unified-select-filter-input" placeholder=label value=queryString}}
-                            {{!--<input placeholder="{{label}}" value="{{readonly queryString}}" aria-controls="{{dropdownId}}" onchange="{{action "updateQuery"}}"/>--}}
+                            {{input class="unified-select-filter-input" placeholder=label value=queryString aria-controls=dropdownId aria-label=filterLabel}}
                             <button class="unified-select-close-query" {{action "clearQuery"}} aria-label={{clearLabel}}>
                                 <img class="icon" src="../../ember-unified-select/images/close-icon.svg" alt={{clearLabel}} aria-hidden="true">
                             </button>
@@ -38,19 +37,19 @@
                         {{/if}}
                     </div>
                 {{/if}}
-                <ul id={{dropdownId}} class="unified-select-dropdown-list {{if showModalSearch "search-visible"}}" aria-live="polite">
+                <ul id={{dropdownId}} class="unified-select-dropdown-list {{if showModalSearch "search-visible"}}" role="listbox">
                     {{#each filterableOptions as |option index|}}
                         {{#if isDeepOptions}}
                             <li data-test-id= {{concat "sbDeepOption" index}}>
-                                <a {{action  "selectItem" option}} class="{{if (is-equal selected (get option valueKey)) "selected"}} {{if option.filtered "filtered"}}"
-                                    href="javascript://">
+                                <a onclick={{action  "selectItem" option}} class="{{if (is-equal selected (get option valueKey)) "selected"}} {{if option.filtered "filtered"}}"
+                                    href="javascript://" aria-selected={{is-equal selected (get option valueKey)}} role="option">
                                     {{get option displayKey}}
                                 </a>
                             </li>
                         {{else}}
                             <li data-test-id= {{concat "sbFlatOption" index}}>
-                                <a {{action  "selectItem" option.val}} class="{{if (is-equal selected option.val) "selected"}} {{if option.filtered "filtered"}}"
-                                    href="javascript://">
+                                <a onclick={{action  "selectItem" option.val}} class="{{if (is-equal selected option.val) "selected"}} {{if option.filtered "filtered"}}"
+                                    href="javascript://" aria-selected={{is-equal selected option.val}} role="option">
                                     {{option.val}}
                                 </a>
                             </li>
@@ -63,6 +62,7 @@
                         </div>
                     {{/if}}
                 </ul>
+                <button class="retain-focus sr-only" onfocus={{action "refocus"}}></button>
             </div>
         {{/unless}}
     {{/if}}
