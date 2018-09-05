@@ -25,13 +25,13 @@
                         {{#if showModalSearch}}
                             {{input class="unified-select-filter-input" placeholder=label value=queryString aria-controls=dropdownId aria-label=filterLabel}}
                             <button class="unified-select-close-query" {{action "clearQuery"}} aria-label={{clearLabel}}>
-                                <img class="icon" src="../../ember-unified-select/images/close-icon.svg" alt={{clearLabel}} aria-hidden="true">
+                                <img class="icon" src="ember-unified-select/assets/images/close-icon.svg" alt={{clearLabel}} aria-hidden="true">
                             </button>
                         {{else}}
                             <div class="unified-select-dropdown-label">{{label}}</div>
                             {{#if searchableOptions}}
                                 <button class="unified-select-search-btn" {{action "searchOptions"}} aria-label={{filterLabel}}>
-                                    <img class="icon"  src="../../ember-unified-select/images/search-icon.svg" alt={{filterLabel}} aria-hidden="true">
+                                    <img class="icon"  src="ember-unified-select/assets/images/search-icon.svg" alt={{filterLabel}} aria-hidden="true">
                                 </button>
                             {{/if}}
                         {{/if}}
@@ -57,7 +57,7 @@
                     {{/each}}
                     {{#if showEmptyState}}
                         <div class="unified-select-dropdown-empty empty-state">
-                            <img class="icon" src="../../ember-unified-select/images/search-icon.svg" alt={{emptyFilterText}} aria-hidden="true">
+                            <img class="icon" src="ember-unified-select/assets/images/search-icon.svg" alt={{emptyFilterText}} aria-hidden="true">
                             <p>{{emptyFilterText}}</p>
                         </div>
                     {{/if}}
