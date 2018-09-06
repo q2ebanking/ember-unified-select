@@ -48,7 +48,7 @@
         }
     }
 
-    input + button {
+    input+button {
         top: 0.6rem;
         right: 0.8rem;
     }
@@ -94,25 +94,23 @@
         }
 
         &.as-modal {
-            width: calc(100vw - 6.2857rem);
+            width: calc(100vw - 2rem);
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
             position: fixed;
             max-width: 400px;
-            max-height: 90vh;
             min-height: 3rem;
             overflow: hidden;
             border-radius: 3px;
+            box-shadow: 0 3px 6px 2px rgba(0, 0, 0, .35);
 
             &.searchable {
-                top: 1.5rem;
+                top: 1rem;
                 transform: translate(-50%, 0);
 
                 .unified-select-dropdown-list {
-                    max-height: 90vh;
-                    position: relative;
-                    top: 3rem;
+                    max-height: calc(90vh - 2rem);
 
                     a {
                         display: none;
@@ -120,6 +118,10 @@
                         &.filtered {
                             display: block;
                         }
+                    }
+
+                    &.search-visible {
+                        max-height: calc(90vh - 3.5rem);
                     }
                 }
             }
@@ -130,26 +132,14 @@
                 .unified-select-filter-input {
                     margin: 0.5rem 0 0.75rem;
                 }
-
-                .unified-select-dropdown-list {
-                    margin-top: 3rem;
-                    top: 0;
-
-                    &.search-visible {
-                        margin-top: 4.35rem;
-                    }
-                }
             }
         }
     }
 
     .unified-select-dropdown-header {
         background-color: #ffffff;
-        position: fixed;
+        position: sticky;
         padding: 0 0.75rem;
-        width: 100%;
-        z-index: 6;
-        max-width: 400px;
         box-sizing: border-box;
         text-align: center;
         border-bottom: 1px solid #eeeeee;
@@ -199,7 +189,7 @@
         height: 100vh;
         top: 0;
         left: 0;
-        background-color: rgba(0, 0, 0, 0.35);
+        background-color: rgba(0, 0, 0, 0.5);
         z-index: 4;
     }
 
@@ -210,7 +200,7 @@
         padding: 0;
         margin: -1px;
         overflow: hidden;
-        clip: rect(0,0,0,0);
+        clip: rect(0, 0, 0, 0);
         border: 0;
     }
 }
