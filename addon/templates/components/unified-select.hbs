@@ -16,10 +16,10 @@
             disabled=disabled
         }}
     {{else}}
-        <input type="text" class="unified-select-dropdown" id="{{selectId}}" value="{{selectedDisplay}}"
+        <input type="text" class="unified-select-dropdown" id={{selectId}} value={{selectedDisplay}}
             readonly=true placeholder={{placeholder}} onclick= {{action "open"}} aria-haspopup="listbox" aria-controls={{dropdownId}} aria-expanded={{isOpen}} disabled={{disabled}}>
         {{#unless emptyOptions}}
-            <div class="{{dropdownClasses}}" tabindex="-1">
+            <div class={{dropdownClasses}} tabindex="-1">
                 {{#if showModalHeader}}
                     <div class="unified-select-dropdown-header">
                         {{#if showModalSearch}}
