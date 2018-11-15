@@ -13,10 +13,10 @@ This README outlines the details of collaborating on this Ember addon.
 * `ember serve`
 * Visit your app at [http://localhost:4200](http://localhost:4200).
 
-## Running In Another App
+## Install
 
 In Ember project
-* `npm link ember-unified-select`
+* `ember install @q2ebanking/ember-unified-select`
 * call component in desired place with `{{unified-select}}`
 * Build app
 
@@ -35,12 +35,12 @@ For more information on using ember-cli, visit [https://ember-cli.com/](https://
 ## Example usage
 ```
 {{unified-select
-    selectId=state_select
+    selectId="state-select"
     options=statesArray
     disabled=disabled
     placeholder=placeholder
     selected=selected
-    onchange=(action "onchange")
+    onchange=(action (mut selected))
     valueKey=valueKey
     displayKey=displayKey
     nativeSelect=false
@@ -51,63 +51,308 @@ For more information on using ember-cli, visit [https://ember-cli.com/](https://
 yields
 
 ```
-<div id="ember858" class="unified-select ember-view">
+<div id="ember177" class="unified-select ember-view">
     <div class="unified-select-wrapper">
-        <i class="icon-expand"></i>
-        <input type="text" id="state_select" aria-labelled-by="state_label" readonly="true" class="unified-select-dropdown">
-        <div class="unified-select-dropdown-container searchable ">
-            <ol class="unified-select-dropdown-list ">
-                <li data-test-id="sbDeepOption0"> <a href="#" class=" filtered" data-ember-action-859="859">Alabama</a></li>
-                <li data-test-id="sbDeepOption1"> <a href="#" class=" filtered" data-ember-action-860="860">Alaska</a></li>
-                <li data-test-id="sbDeepOption2"> <a href="#" class=" filtered" data-ember-action-861="861">Arizona</a></li>
-                <li data-test-id="sbDeepOption3"> <a href="#" class=" filtered" data-ember-action-862="862">Arkansas</a></li>
-                <li data-test-id="sbDeepOption4"> <a href="#" class=" filtered" data-ember-action-863="863">California</a></li>
-                <li data-test-id="sbDeepOption5"> <a href="#" class=" filtered" data-ember-action-864="864">Colorado</a></li>
-                <li data-test-id="sbDeepOption6"> <a href="#" class=" filtered" data-ember-action-865="865">Connecticut</a></li>
-                <li data-test-id="sbDeepOption7"> <a href="#" class=" filtered" data-ember-action-866="866">Delaware</a></li>
-                <li data-test-id="sbDeepOption8"> <a href="#" class=" filtered" data-ember-action-867="867">Florida</a></li>
-                <li data-test-id="sbDeepOption9"> <a href="#" class=" filtered" data-ember-action-868="868">Georgia</a></li>
-                <li data-test-id="sbDeepOption10"> <a href="#" class=" filtered" data-ember-action-869="869">Hawaii</a></li>
-                <li data-test-id="sbDeepOption11"> <a href="#" class=" filtered" data-ember-action-870="870">Idaho</a></li>
-                <li data-test-id="sbDeepOption12"> <a href="#" class=" filtered" data-ember-action-871="871">Illinois</a></li>
-                <li data-test-id="sbDeepOption13"> <a href="#" class=" filtered" data-ember-action-872="872">Indiana</a></li>
-                <li data-test-id="sbDeepOption14"> <a href="#" class=" filtered" data-ember-action-873="873">Iowa</a></li>
-                <li data-test-id="sbDeepOption15"> <a href="#" class=" filtered" data-ember-action-874="874">Kansas</a></li>
-                <li data-test-id="sbDeepOption16"> <a href="#" class=" filtered" data-ember-action-875="875">Kentucky</a></li>
-                <li data-test-id="sbDeepOption17"> <a href="#" class=" filtered" data-ember-action-876="876">Louisiana</a></li>
-                <li data-test-id="sbDeepOption18"> <a href="#" class=" filtered" data-ember-action-877="877">Maine</a></li>
-                <li data-test-id="sbDeepOption19"> <a href="#" class=" filtered" data-ember-action-878="878">Maryland</a></li>
-                <li data-test-id="sbDeepOption20"> <a href="#" class=" filtered" data-ember-action-879="879">Massachusetts</a></li>
-                <li data-test-id="sbDeepOption21"> <a href="#" class=" filtered" data-ember-action-880="880">Michigan</a></li>
-                <li data-test-id="sbDeepOption22"> <a href="#" class=" filtered" data-ember-action-881="881">Minnesota</a></li>
-                <li data-test-id="sbDeepOption23"> <a href="#" class=" filtered" data-ember-action-882="882">Mississippi</a></li>
-                <li data-test-id="sbDeepOption24"> <a href="#" class=" filtered" data-ember-action-883="883">Missouri</a></li>
-                <li data-test-id="sbDeepOption25"> <a href="#" class=" filtered" data-ember-action-884="884">Montana</a></li>
-                <li data-test-id="sbDeepOption26"> <a href="#" class=" filtered" data-ember-action-885="885">Nebraska</a></li>
-                <li data-test-id="sbDeepOption27"> <a href="#" class=" filtered" data-ember-action-886="886">Nevada</a></li>
-                <li data-test-id="sbDeepOption28"> <a href="#" class=" filtered" data-ember-action-887="887">New Hampshire</a></li>
-                <li data-test-id="sbDeepOption29"> <a href="#" class=" filtered" data-ember-action-888="888">New Jersey</a></li>
-                <li data-test-id="sbDeepOption30"> <a href="#" class=" filtered" data-ember-action-889="889">New Mexico</a></li>
-                <li data-test-id="sbDeepOption31"> <a href="#" class=" filtered" data-ember-action-890="890">New York</a></li>
-                <li data-test-id="sbDeepOption32"> <a href="#" class=" filtered" data-ember-action-891="891">North Carolina</a></li>
-                <li data-test-id="sbDeepOption33"> <a href="#" class=" filtered" data-ember-action-892="892">North Dakota</a></li>
-                <li data-test-id="sbDeepOption34"> <a href="#" class=" filtered" data-ember-action-893="893">Ohio</a></li>
-                <li data-test-id="sbDeepOption35"> <a href="#" class=" filtered" data-ember-action-894="894">Oklahoma</a></li>
-                <li data-test-id="sbDeepOption36"> <a href="#" class=" filtered" data-ember-action-895="895">Oregon</a></li>
-                <li data-test-id="sbDeepOption37"> <a href="#" class=" filtered" data-ember-action-896="896">Pennsylvania</a></li>
-                <li data-test-id="sbDeepOption38"> <a href="#" class=" filtered" data-ember-action-897="897">Rhode Island</a></li>
-                <li data-test-id="sbDeepOption39"> <a href="#" class=" filtered" data-ember-action-898="898">South Carolina</a></li>
-                <li data-test-id="sbDeepOption40"> <a href="#" class=" filtered" data-ember-action-899="899">South Dakota</a></li>
-                <li data-test-id="sbDeepOption41"> <a href="#" class=" filtered" data-ember-action-900="900">Tennessee</a></li>
-                <li data-test-id="sbDeepOption42"> <a href="#" class=" filtered" data-ember-action-901="901">Texas</a></li>
-                <li data-test-id="sbDeepOption43"> <a href="#" class=" filtered" data-ember-action-902="902">Utah</a></li>
-                <li data-test-id="sbDeepOption44"> <a href="#" class=" filtered" data-ember-action-903="903">Vermont</a></li>
-                <li data-test-id="sbDeepOption45"> <a href="#" class=" filtered" data-ember-action-904="904">Virginia</a></li>
-                <li data-test-id="sbDeepOption46"> <a href="#" class=" filtered" data-ember-action-905="905">Washington</a></li>
-                <li data-test-id="sbDeepOption47"> <a href="#" class=" filtered" data-ember-action-906="906">West Virginia</a></li>
-                <li data-test-id="sbDeepOption48"> <a href="#" class=" filtered" data-ember-action-907="907">Wisconsin</a></li>
-                <li data-test-id="sbDeepOption49"> <a href="#" class=" filtered" data-ember-action-908="908">Wyoming</a></li>
-            </ol>
+        <input class="unified-select-dropdown" id="state-select" readonly="true" placeholder="" aria-haspopup="listbox" aria-controls="unified-select-dropdown-list-ember177" type="text">
+        <div class="unified-select-dropdown-container searchable open" tabindex="-1">
+            <ul id="unified-select-dropdown-list-ember177" class="unified-select-dropdown-list " role="listbox">
+                <li data-test-id="sbDeepOption0">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Alabama
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption1">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Alaska
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption2">
+                    <a class=" filtered" href="javascript://" role="option">
+                        American Samoa
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption3">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Arizona
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption4">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Arkansas
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption5">
+                    <a class=" filtered" href="javascript://" role="option">
+                        California
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption6">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Colorado
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption7">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Connecticut
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption8">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Delaware
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption9">
+                    <a class=" filtered" href="javascript://" role="option">
+                        District Of Columbia
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption10">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Federated States Of Micronesia
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption11">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Florida
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption12">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Georgia
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption13">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Guam
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption14">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Hawaii
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption15">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Idaho
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption16">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Illinois
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption17">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Indiana
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption18">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Iowa
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption19">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Kansas
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption20">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Kentucky
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption21">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Louisiana
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption22">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Maine
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption23">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Marshall Islands
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption24">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Maryland
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption25">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Massachusetts
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption26">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Michigan
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption27">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Minnesota
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption28">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Mississippi
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption29">
+                    <a class="selected filtered" href="javascript://" role="option" aria-selected="">
+                        Missouri
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption30">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Montana
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption31">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Nebraska
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption32">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Nevada
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption33">
+                    <a class=" filtered" href="javascript://" role="option">
+                        New Hampshire
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption34">
+                    <a class=" filtered" href="javascript://" role="option">
+                        New Jersey
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption35">
+                    <a class=" filtered" href="javascript://" role="option">
+                        New Mexico
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption36">
+                    <a class=" filtered" href="javascript://" role="option">
+                        New York
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption37">
+                    <a class=" filtered" href="javascript://" role="option">
+                        North Carolina
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption38">
+                    <a class=" filtered" href="javascript://" role="option">
+                        North Dakota
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption39">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Northern Mariana Islands
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption40">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Ohio
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption41">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Oklahoma
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption42">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Oregon
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption43">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Palau
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption44">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Pennsylvania
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption45">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Puerto Rico
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption46">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Rhode Island
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption47">
+                    <a class=" filtered" href="javascript://" role="option">
+                        South Carolina
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption48">
+                    <a class=" filtered" href="javascript://" role="option">
+                        South Dakota
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption49">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Tennessee
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption50">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Texas
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption51">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Utah
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption52">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Vermont
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption53">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Virgin Islands
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption54">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Virginia
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption55">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Washington
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption56">
+                    <a class=" filtered" href="javascript://" role="option">
+                        West Virginia
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption57">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Wisconsin
+                    </a>
+                </li>
+                <li data-test-id="sbDeepOption58">
+                    <a class=" filtered" href="javascript://" role="option">
+                        Wyoming
+                    </a>
+                </li>
+            </ul>
+            <button class="retain-focus sr-only"></button>
         </div>
     </div>
 </div>
