@@ -1,3 +1,5 @@
+# THIS PROJECT IS ARCHIVED AND NO LONGER MAINTAINED
+
 # ember-unified-select
 
 This README outlines the details of collaborating on this Ember addon.
